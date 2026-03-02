@@ -1,0 +1,375 @@
+/* ===== MST Guesser - スタイル ===== */
+
+:root {
+  --bg: #f8f9fa;
+  --text: #1a1a2e;
+  --accent: #3b82f6;
+  --green: #22c55e;
+  --red: #ef4444;
+  --gray: #6b7280;
+  --muted: #9ca3af;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  overscroll-behavior-y: contain;
+}
+
+#app {
+  width: 100%;
+  max-width: 540px;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.5rem 0;
+}
+
+/* ----- タイトル画面 ----- */
+.title-screen {
+  padding-top: 3rem;
+}
+
+.title-screen h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--gray);
+}
+
+.rules {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  line-height: 2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-size: 1.05rem;
+}
+
+/* ----- 難易度選択 ----- */
+.diff-select {
+  width: 100%;
+  text-align: center;
+}
+
+.diff-label {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+
+.diff-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.diff-btn {
+  min-width: 5rem;
+  line-height: 1.4;
+}
+
+.diff-btn small {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+/* ----- このゲームについてリンク ----- */
+.about-link {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0;
+  transition: color 0.15s;
+}
+
+.about-link:hover {
+  color: var(--accent);
+}
+
+.about-link:active {
+  opacity: 0.8;
+}
+
+/* ----- ボード ----- */
+.board-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.board-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ----- 上部バー ----- */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+/* ----- ヒント ----- */
+.hint {
+  font-size: 0.88rem;
+  color: var(--muted);
+  min-height: 1.3rem;
+  transition: color 0.2s;
+}
+
+/* ----- ボタン ----- */
+.buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 24px;
+  min-height: 44px;
+  min-height: 2.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+/* ----- トースト ----- */
+.toast {
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: #1f2937;
+  color: white;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ----- 結果画面 ----- */
+.result-stats {
+  text-align: center;
+}
+
+.score-big {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.cost-compare {
+  font-size: 0.93rem;
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+}
+
+.legend {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--gray);
+  align-items: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ----- 最終結果 ----- */
+.final-score {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.final-msg {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.round-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.round-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.round-num {
+  width: 24px;
+  text-align: right;
+  color: var(--muted);
+}
+
+.round-score-text {
+  width: 42px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.round-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.round-bar {
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  transition: width 0.6s ease-out;
+}
+
+/* ----- スマホ向け ----- */
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+
+  .title-screen {
+    padding-top: 1.5rem;
+  }
+
+  .title-screen h1 {
+    font-size: 1.75rem;
+  }
+
+  .rules {
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .screen {
+    gap: 1rem;
+  }
+
+  .buttons {
+    gap: 0.5rem;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  .diff-btn {
+    min-width: 4.5rem;
+    padding: 10px 12px;
+  }
+}
+
+/* ----- SVGノード ----- */
+.node-hit {
+  cursor: pointer;
+}
+
+.node-dot {
+  pointer-events: none;
+  transition: r 0.12s;
+}

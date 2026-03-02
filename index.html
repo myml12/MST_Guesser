@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>MST Guesser - 最小全域木を当てろ！｜直感で当てる数学ゲーム</title>
+  <meta name="description" content="ランダムに配置された点をすべてつなげ、最小全域木（MST）を直感で当てるゲーム。初級・中級・上級の3段階で5問に挑戦。">
+  <meta name="keywords" content="MST,最小全域木,ゲーム,数学,パズル,直感">
+  <meta name="theme-color" content="#3b82f6">
+  <link rel="canonical" href="" id="canonical">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MST Guesser - 最小全域木を当てろ！">
+  <meta property="og:description" content="ランダムに配置された点をすべてつなげ、最小全域木を直感で当てるゲーム。初級・中級・上級で5問に挑戦。">
+  <meta property="og:url" content="" id="og-url">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="MST Guesser">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MST Guesser - 最小全域木を当てろ！">
+  <meta name="twitter:description" content="ランダムに配置された点をすべてつなげ、最小全域木を直感で当てるゲーム。">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var base = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '') || window.location.href;
+      var canonical = document.getElementById('canonical');
+      var ogUrl = document.getElementById('og-url');
+      if (canonical) canonical.href = base;
+      if (ogUrl) ogUrl.content = base;
+    })();
+  </script>
+</body>
+</html>
