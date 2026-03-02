@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://myml12.github.io/MST_Guesser/sitemap.xml
